@@ -9,7 +9,8 @@ export default {
 	methods: {
 		clearTodo() {
 			// 로컬스토리지의 데이터 모두 삭제
-			localStorage.clear();
+			// localStorage.clear();
+			this.$emit('removeAll');
 		}
 	}
 }
@@ -19,10 +20,10 @@ export default {
 .clearAllContainer {
 	width: 8.5rem;
 	height: 50px;
-	line-height: 50px;
-	background: #fff;
-	border-radius: 5px;
 	margin: 0 auto;
+	border-radius: 5px;
+	background: #fff;
+	line-height: 50px;
 }
 .clearAllBtn {
 	display: block;
