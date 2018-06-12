@@ -6,7 +6,7 @@
 <body>
 <div id="app">
   <!-- <button v-on:click="getData">프레임워크 목록 가져오기</button> -->
-  <!-- <table>
+  <table>
   <caption><span class="blind">게시판</span></caption>
   <colgroup>
   <col style="width:">
@@ -20,13 +20,16 @@
     <th scope="col">날짜</th>
   </tr>
   </thead>
-  <tbody>
-  <tr>
-    <td></td>
-    <td></td>
+  <tbody v-if="posts && posts.length">
+  <tr v-for="post in posts" v-bind:key="post.id">
+    <td scope="row">{{ post.id }}</td>
+    <td>
+      <img v-bind:src="post.thumbnailUrl">
+    </td>
+    <td>{{ post.title }}</td>
   </tr>
   </tbody>
-  </table> -->
+  </table>
   <ul v-if="posts && posts.length">
     <li v-for="post in posts" v-bind:key="post.id">
       {{ post.username }}
@@ -53,6 +56,7 @@
     methods: {
       getData: function() {
         axios.get('https://jsonplaceholder.typicode.com/photos')
+        // axios.get('https://jsonplaceholder.typicode.com/users')
           .then(response => {
             console.log(response)
             this.posts = response.data
